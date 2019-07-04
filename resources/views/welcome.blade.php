@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Turn It On</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        {{-- Main Style folder --}}
-        <link rel="stylesheet" href="/css/app.css">
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <div class="title m-b-md">
-                    Turn It On
-                </div>
-
-                <div class="links">
-                    <a href="/bulb">Docs</a>
-                </div>
+@section('content')
+<div class="container">
+    <div class="row">Turn It On</div>
+    <div class="row">
+        <div class="col-xs">
+            <div class="bulb">
+                <img src="/images/bulb-off.png" height="1200">
             </div>
         </div>
-    </body>
+        <div class="col-xs">
+            <button class="bulb-switch">ON</button>
+            <button class="bulb-switch">OFF</button>
+        </div>
+    </div>
+</div>
+</body>
 </html>
+@endsection
