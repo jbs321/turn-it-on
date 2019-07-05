@@ -11,7 +11,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" ></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+{{--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />--}}
+{{--    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />--}}
 </head>
 <body>
     <div id="app">
@@ -77,22 +79,6 @@
             @yield('content')
         </main>
     </div>
+
 </body>
 </html>
-
-<script>
-    $(function () {
-        $(".bulb-switch").click(function () {
-            let btnHtml = $(this).html();
-
-            switch (btnHtml) {
-                case "ON":
-                    $(".bulb img").attr("src", "/images/bulb-on.png");
-                    break;
-                case "OFF":
-                    $(".bulb img").attr("src", "/images/bulb-off.png");
-                    break;
-            }
-        });
-    });
-</script>
