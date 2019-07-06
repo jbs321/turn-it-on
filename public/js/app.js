@@ -76193,9 +76193,10 @@ __webpack_require__.r(__webpack_exports__);
 var GET__BUILB_STATE = 'get__bulb_state';
 var POST__TOGGLE_BULB = 'post__toggle_bulb';
 function getBulbState() {
+  var request = axios.get("/api/bulb/1");
   return {
     type: GET__BUILB_STATE,
-    payload: 1
+    payload: request
   };
 }
 function changeBulbState() {
@@ -76205,9 +76206,10 @@ function changeBulbState() {
     throw new Error("state doesn't exists");
   }
 
+  var request = axios.post("/api/bulb/1");
   return {
     type: POST__TOGGLE_BULB,
-    payload: state
+    payload: request
   };
 }
 
@@ -76382,13 +76384,14 @@ function (_Component) {
   _createClass(BulbPanelPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      Object(_actions_BulbAction__WEBPACK_IMPORTED_MODULE_2__["getBulbState"])();
+      this.props.getBulbState();
     }
   }, {
     key: "render",
     value: function render() {
       var _this = this;
 
+      console.log(this.props);
       var src = this.props.bulb != 1 ? "/images/bulb-off.png" : "/images/bulb-on.png";
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
@@ -76418,13 +76421,9 @@ function (_Component) {
   return BulbPanelPage;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var mapStateToProps = function mapStateToProps(state, ownProps) {
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(function (state) {
   return state;
-};
-
-var mapDispatchToProps = {// ... normally is an object full of action creators
-};
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, {
+}, {
   getBulbState: _actions_BulbAction__WEBPACK_IMPORTED_MODULE_2__["getBulbState"],
   changeBulbState: _actions_BulbAction__WEBPACK_IMPORTED_MODULE_2__["changeBulbState"]
 })(BulbPanelPage));
@@ -76458,18 +76457,27 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_BulbAction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/BulbAction */ "./resources/js/actions/BulbAction.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
+  if (lodash__WEBPACK_IMPORTED_MODULE_1___default.a.isUndefined(action.payload)) {
+    return state;
+  }
+
+  var isOn = action.payload.data.is_on;
+
   switch (action.type) {
     case _actions_BulbAction__WEBPACK_IMPORTED_MODULE_0__["GET__BUILB_STATE"]:
-      return action.payload;
+      return isOn;
       break;
 
     case _actions_BulbAction__WEBPACK_IMPORTED_MODULE_0__["POST__TOGGLE_BULB"]:
-      return state == 1 ? 0 : 1;
+      return isOn ? 1 : 0;
       break;
   }
 

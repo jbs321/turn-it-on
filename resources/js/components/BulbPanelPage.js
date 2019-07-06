@@ -4,9 +4,12 @@ import {getBulbState, changeBulbState} from "../actions/BulbAction";
 
 class BulbPanelPage extends Component {
     componentDidMount() {
-        getBulbState();
+        this.props.getBulbState();
     }
+
+
     render() {
+        console.log(this.props);
 
         let src = this.props.bulb !=1 ? "/images/bulb-off.png" : "/images/bulb-on.png"
 
@@ -28,15 +31,7 @@ class BulbPanelPage extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return state;
-};
-
-const mapDispatchToProps = {
-    // ... normally is an object full of action creators
-};
-
 export default connect(
-    mapStateToProps,
+    state => state,
     {getBulbState, changeBulbState}
 )(BulbPanelPage);
